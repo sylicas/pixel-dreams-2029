@@ -453,7 +453,7 @@ function startPolling() {
   poll = setInterval(async () => {
     if (document.hidden || $('#card').open) return;
     try { await loadDreams(); renderSpace(); } catch {}
-  }, 15000);
+  }, 5000);
 }
 function stopPolling() { clearInterval(poll); poll = null; }
 
