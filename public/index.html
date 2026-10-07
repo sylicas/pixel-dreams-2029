@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#110d2b">
+  <title>Dreams for GenerationS</title>
+  <meta name="description" content="A place to share our dreams together for 2029.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9' shape-rendering='crispEdges'%3E%3Cpath fill='%23f5c844' d='M4 0h1v1h1v1h3v1H8v1H7v2h1v2H7V7H6V6H3v1H2v1H1V6h1V4H1V3H0V2h3V1h1z'/%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/pixelify-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/press-start-2p-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="stars-bg" aria-hidden="true"></div>
+
+  <!-- Welcome -->
+  <section id="welcome" class="screen active">
+    <div class="welcome-inner">
+      <p class="kicker">✦ welcome to ✦</p>
+      <h1 id="title" class="title">Dreams for GenerationS</h1>
+      <p id="tagline" class="tagline">A place to share our dreams together for 2029</p>
+      <div class="welcome-scene" aria-hidden="true">
+        <canvas id="welcome-building" class="welcome-building"></canvas>
+        <div id="welcome-crowd" class="welcome-crowd"></div>
+      </div>
+      <p id="welcome-count" class="welcome-count"></p>
+      <div class="stack">
+        <button id="btn-start" class="btn primary big">Share a dream</button>
+        <button id="btn-look" class="btn big">Look around</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 1: name + selfie -->
+  <section id="step-name" class="screen">
+    <div class="panel">
+      <p class="step">Step 1 of 3</p>
+      <h2>Who's dreaming?</h2>
+      <label class="field">
+        <span>Your name</span>
+        <input id="in-name" maxlength="24" autocomplete="nickname" placeholder="e.g. Jamie">
+      </label>
+      <label class="field">
+        <span>CG</span>
+        <select id="in-cg" required></select>
+      </label>
+      <p class="hint">Add a selfie and we'll match your character's colours to it. It's optional, and the photo is never saved.</p>
+      <div class="selfie-row">
+        <label class="btn">📷 Take selfie<input id="in-camera" type="file" accept="image/*" capture="user" hidden></label>
+        <label class="btn">🖼 Choose photo<input id="in-photo" type="file" accept="image/*" hidden></label>
+      </div>
+      <div class="actions">
+        <button class="btn" data-go="welcome">Back</button>
+        <button id="btn-skip-selfie" class="btn primary">Make my character</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pixelating -->
+  <section id="step-pixel" class="screen">
+    <div class="panel center">
+      <h2>Pixelating you…</h2>
+      <canvas id="pixel-canvas" width="192" height="192" class="pixel-canvas"></canvas>
+      <div class="bar"><div id="pixel-bar"></div></div>
+      <p id="pixel-msg" class="hint">Reading your colours</p>
+    </div>
+  </section>
+
+  <!-- Step 2: builder -->
+  <section id="step-build" class="screen fit">
+    <div class="panel fit-panel">
+      <p class="step" id="build-step">Step 2 of 3</p>
+      <h2>Make your character</h2>
+      <p id="build-note" class="note" hidden></p>
+      <div class="builder-top">
+        <div class="preview"><canvas id="preview"></canvas></div>
+        <div class="stack">
+          <div class="seg" id="seg-g"></div>
+          <button id="btn-shuffle" class="btn">🎲 Shuffle</button>
+        </div>
+      </div>
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div class="tab-wrap">
+        <div class="tab-body" id="tab-body"></div>
+        <div class="tab-more" id="tab-more" aria-hidden="true" hidden>▼ scroll for more</div>
+        <div class="tab-rail" id="tab-rail" aria-hidden="true"><div class="tab-thumb" id="tab-thumb"></div></div>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btn-build-back">Back</button>
+        <button class="btn primary" id="btn-build-next">Looks good!</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 3: the dream -->
+  <section id="step-dream" class="screen">
+    <div class="panel">
+      <p class="step" id="dream-step">Step 3 of 3</p>
+      <h2>What do you dream of?</h2>
+      <p class="hint">Big or small, for tomorrow or for someday. It goes up in your thought bubble for everyone to see.</p>
+      <label class="field" id="edit-cg-row" hidden>
+        <span>CG</span>
+        <select id="in-cg-edit"></select>
+      </label>
+      <p class="label">Pick a symbol</p>
+      <div class="icon-grid" id="icon-grid"></div>
+      <label class="field">
+        <span>Your dream</span>
+        <textarea id="in-dream" maxlength="600" rows="6" placeholder="One day I want to…"></textarea>
+      </label>
+      <p class="counter"><span id="dream-count">0</span>/600</p>
+      <div class="actions">
+        <button class="btn" id="btn-dream-back">Back</button>
+        <button class="btn primary" id="btn-send">Release my dream ✦</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- The dream space -->
+  <section id="space-view" class="screen">
+    <header class="space-head">
+      <p id="space-count" class="space-count"></p>
+      <div class="space-btns">
+        <button id="btn-random" class="btn small">🎲 Random</button>
+        <button id="btn-readall" class="btn small light">Read all</button>
+      </div>
+    </header>
+    <div class="filters" id="filters" role="group" aria-label="Filter by CG"></div>
+    <div class="space-frame">
+      <div class="space-title" aria-hidden="true">
+        <span id="space-title"></span>
+        <small id="space-tagline"></small>
+      </div>
+      <div id="space"></div>
+      <div id="space-empty" class="space-empty" hidden>No dreams yet. Be the first!</div>
+    </div>
+    <div class="space-foot">
+      <button id="btn-join" class="btn primary">+ Share your dream</button>
+      <button id="btn-findme" class="btn small" hidden>Find me</button>
+      <button id="btn-home" class="btn small">Home</button>
+    </div>
+    <p id="tip" class="tip" hidden>Tap anyone to read their dream</p>
+    <button id="btn-top" class="btn small top-btn" hidden aria-label="Back to top">▲ Top</button>
+  </section>
+
+  <!-- Dream card -->
+  <dialog id="card" class="card">
+    <div class="card-inner">
+      <button class="card-x" id="card-close" aria-label="Close">✕</button>
+      <div class="card-art"><canvas id="card-sprite"></canvas><img id="card-icon" class="card-icon" alt=""></div>
+      <p class="card-who"><span id="card-name"></span> <em id="card-cg" class="cg-badge"></em></p>
+      <p class="card-topic">Dreams of <b id="card-topic"></b>…</p>
+      <div class="card-paper"><p id="card-text"></p></div>
+      <div class="card-row">
+        <button id="card-cheer" class="btn cheer">✦ Me too</button>
+        <span id="card-cheers" class="card-cheers"></span>
+      </div>
+      <button id="card-edit" class="btn small" hidden>Edit my dream</button>
+      <div class="card-nav">
+        <button id="card-prev" class="btn small" aria-label="Previous dream">◀</button>
+        <span id="card-pos"></span>
+        <button id="card-next" class="btn small" aria-label="Next dream">▶</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+  <div id="sparkles" class="sparkles" aria-hidden="true"></div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
