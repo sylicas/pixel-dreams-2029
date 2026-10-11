@@ -3,7 +3,7 @@ import crypto from 'node:crypto';
 
 export const config = () => ({
   title: (process.env.SPACE_TITLE || 'Dreams for GenerationS').slice(0, 40),
-  tagline: (process.env.SPACE_TAGLINE || 'A place to share our dreams together for 2029').slice(0, 120),
+  tagline: (process.env.SPACE_TAGLINE || "BF2026 ✦ Our privilege to give ✦ Let's rise up!").slice(0, 120),
   cgs: (process.env.CG_OPTIONS || 'LE1,LE3,LE5,LE7').split(',').map((s) => s.trim()).filter(Boolean).slice(0, 30),
   maxDreamers: Number(process.env.MAX_DREAMERS) || 100,
   maxSelfieReads: Number(process.env.MAX_SELFIE_READS) || 150,

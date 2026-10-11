@@ -1,6 +1,6 @@
 # ✦ Dreams for GenerationS
 
-*A place to share our dreams together for 2029.*
+*BF2026 ✦ Our privilege to give ✦ Let's rise up!.*
 
 A mobile-first web app where people make a pixel character (optionally starting from a
 selfie), pick their CG, write down a dream, and float into a shared pixel night sky under
@@ -95,7 +95,7 @@ To use a different model, set `ANTHROPIC_MODEL` (for example `claude-haiku-5-5`,
 | `SUPABASE_SERVICE_ROLE_KEY` | The secret key from step 1 |
 | `ANTHROPIC_API_KEY` | Optional, from step 2 |
 | `SPACE_TITLE` | Optional, default `Dreams for GenerationS` |
-| `SPACE_TAGLINE` | Optional, default `A place to share our dreams together for 2029` |
+| `SPACE_TAGLINE` | Optional, default `BF2026 ✦ Our privilege to give ✦ Let's rise up!` |
 | `CG_OPTIONS` | Optional, default `LE1,LE3,LE5,LE7` |
 | `MAX_DREAMERS` | Optional, default `100` |
 | `MAX_SELFIE_READS` | Optional, default `150` |

@@ -13,7 +13,7 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
 };
 
-let config = { title: 'Dreams for GenerationS', tagline: 'A place to share our dreams together for 2029', cgs: ['LE1', 'LE3', 'LE5', 'LE7'], aiSelfie: false };
+let config = { title: 'Dreams for GenerationS', tagline: "BF2026 ✦ Our privilege to give ✦ Let's rise up!", cgs: ['LE1', 'LE3', 'LE5', 'LE7'], aiSelfie: false };
 let dreams = [];
 let me = store.get('pd-me', null);            // { id, token } once you've shared a dream
 const cheered = new Set(store.get('pd-cheered', []));
